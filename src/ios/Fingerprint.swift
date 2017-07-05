@@ -1,6 +1,7 @@
 import Foundation
 import LocalAuthentication
 
+@available(iOS 8.0, *)
 @objc(Fingerprint) class Fingerprint : CDVPlugin {
 
   func isAvailable(_ command: CDVInvokedUrlCommand){
@@ -37,7 +38,7 @@ import LocalAuthentication
         }else {
           // Check if there is an error
           if error != nil {
-            pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "Error: \(error)");
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "Error: \(String(describing: error))");
           }
         }
         self.commandDelegate.send(pluginResult, callbackId:command.callbackId);
