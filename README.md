@@ -3,27 +3,28 @@
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/cordova-plugin-fingerprint-aio)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/NiklasMerz/cordova-plugin-fingerprint-aio/master/LICENSE)
-
-
+[![Build Status](https://travis-ci.org/NiklasMerz/cordova-plugin-fingerprint-aio.svg?branch=master)](https://travis-ci.org/NiklasMerz/cordova-plugin-fingerprint-aio)
+[![Issue Count](https://codeclimate.com/github/NiklasMerz/cordova-plugin-fingerprint-aio/badges/issue_count.svg)](https://codeclimate.com/github/NiklasMerz/cordova-plugin-fingerprint-aio)
 
 [![NPM](https://nodei.co/npm/cordova-plugin-fingerprint-aio.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/cordova-plugin-fingerprint-aio/)
 
 
-This plugin is an attempt to provide a single interface for accessing fingerprint hardware on both Android 6+ and iOS.
-
-There are some great cordova plugins out there that make use of the fingerprint APIs provided by Android and iOS. But I could not find a project which supports both platforms (correct me if I am wrong). I decided to take their native code and bundle it together in one plugin.
+**This plugin provides a single and simple interface for accessing fingerprint APIs on both Android 6+ and iOS.**
 
 ## Features
 
 * Check if fingerprint scanner is available
 * Fingerprint authentication
-* ngCordova support - [Pull request](https://github.com/driftyco/ng-cordova/pull/1347)
-* Ionic Native support - [Pull request](https://github.com/driftyco/ionic-native/pull/845)
+* Ionic Native support
+* ngCordova support
+* Fallback options
+* Now with **FaceID** on iPhone X
 
 ### Platforms
 
-* Android
-* iOS - **XCode 8** required, plugin uses Swift 3
+* Android - Minimum SDK 23
+* iOS - **XCode 9.2 or higher** required
+  * _Please set `<preference name="UseSwiftLanguageVersion" value="3.2" />` in your config.xml_
 
 
 ## How to use
@@ -42,19 +43,43 @@ There are some great cordova plugins out there that make use of the fingerprint 
 
 ### Install
 
-Install from NPM
+**Install from NPM**
 
 ```
 cordova plugin add cordova-plugin-fingerprint-aio --save
 ```
 
-or use this Github repo
+If you want to set a FaceID description use:
+
+```
+cordova plugin add cordova-plugin-fingerprint-aio --variable FACEID_USAGE_DESCRIPTION="Login now...."
+```
+
+**Use Release candidate**
+
+You can use preview versions with the `rc` tag on npm.
+
+```
+cordova plugin add cordova-plugin-fingerprint-aio@rc
+```
+
+**Use this Github repo**
+
+Get the latest development version. *Not recommended!*
+
+```
+cordova plugin add https://github.com/NiklasMerz/cordova-plugin-fingerprint-aio.git
+```
 
 ### Check if fingerprint authentication is available
 ```javascript
 Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
 
     function isAvailableSuccess(result) {
+      /*
+      result depends on device and os. 
+      iPhone X will return 'face' other Android or iOS devices will return 'finger'  
+      */
       alert("Fingerprint available");
     }
 
@@ -80,9 +105,15 @@ Fingerprint.show({
 ```
 **Optional parameters**
 
-__disableBackup__: If true remove backup option on authentication dialogue for Android. Default false.
+* __disableBackup__: If true remove backup option on authentication dialogue for Android. Default false.
+* __localizedFallbackTitle__ (iOS only): Title of fallback button.
+* __localizedReason__ (iOS only): Description in authentication dialogue.
 
-## Thanks to the authors of the original fingerprint plugin:
+## Thanks to the authors of the original fingerprint plugins
+
+Some code is refactored from their projects and I learned how to make Cordova plugins from their great plugins:
+
+@EddyVerbruggen and @mjwheatley
 
 [Android](https://github.com/mjwheatley/cordova-plugin-android-fingerprint-auth)
 
