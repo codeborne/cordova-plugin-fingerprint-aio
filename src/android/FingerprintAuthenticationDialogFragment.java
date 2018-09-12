@@ -246,6 +246,16 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
     }
 
     @Override
+    public void dismiss() {
+        try {
+            super.dismiss();
+        }
+        catch (IllegalStateException e) {
+            Log.w(TAG, "Failed to dismiss dialog", e);
+        }
+    }
+
+    @Override
     public void onError() {
         if(this.getActivity() != null)
             goToBackup();
