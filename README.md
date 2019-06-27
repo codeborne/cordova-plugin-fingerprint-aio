@@ -1,5 +1,5 @@
 # Cordova Plugin Fingerprint All-In-One
-## **Android** and **iOS**
+## For **Android** and **iOS**
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/cordova-plugin-fingerprint-aio)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/NiklasMerz/cordova-plugin-fingerprint-aio/master/LICENSE)
@@ -13,18 +13,19 @@
 
 ## Features
 
-* Check if fingerprint scanner is available
+* Check if a fingerprint scanner is available
 * Fingerprint authentication
 * Ionic Native support
 * ngCordova support
 * Fallback options
 * Now with **FaceID** on iPhone X
+* **⚡️ Works with [Capacitor](https://capacitor.ionicframework.com/). [Try it out](https://github.com/NiklasMerz/capacitor-fingerprint-app) ⚡️**
 
 ### Platforms
 
 * Android - Minimum SDK 23
 * iOS - **XCode 9.2 or higher** required
-  * _Please set `<preference name="UseSwiftLanguageVersion" value="3.2" />` in your config.xml_
+  * _Please set `<preference name="UseSwiftLanguageVersion" value="4.0" />` in your config.xml_
 
 
 ## How to use
@@ -55,7 +56,7 @@ If you want to set a FaceID description use:
 cordova plugin add cordova-plugin-fingerprint-aio --variable FACEID_USAGE_DESCRIPTION="Login now...."
 ```
 
-**Use Release candidate**
+**Use the release candidate for testing the latest fixes**
 
 You can use preview versions with the `rc` tag on npm.
 
@@ -91,8 +92,8 @@ Fingerprint.isAvailable(isAvailableSuccess, isAvailableError);
 ### Show authentication dialogue
 ```javascript
 Fingerprint.show({
-      clientId: "Fingerprint-Demo",
-      clientSecret: "password" //Only necessary for Android
+      clientId: "Fingerprint-Demo", //Android: Used for encryption. iOS: used for dialogue if no `localizedReason` is given.
+      clientSecret: "o7aoOMYUbyxaD23oFAnJ" //Necessary for Android encrpytion of keys. Use random secret key.
     }, successCallback, errorCallback);
 
     function successCallback(){
@@ -105,7 +106,7 @@ Fingerprint.show({
 ```
 **Optional parameters**
 
-* __disableBackup__: If true remove backup option on authentication dialogue for Android. Default false.
+* __disableBackup__: If `true` remove backup option on authentication dialogue for Android. Default: `false`.
 * __localizedFallbackTitle__ (iOS only): Title of fallback button.
 * __localizedReason__ (iOS only): Description in authentication dialogue.
 
@@ -121,5 +122,5 @@ Some code is refactored from their projects and I learned how to make Cordova pl
 
 ## License
 
-* Project and iOS source -> MIT
-* Android source -> MIT and Apache 2.0
+* Project and iOS source: [MIT](https://opensource.org/licenses/MIT)
+* Android source: [MIT](https://opensource.org/licenses/MIT) and [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)

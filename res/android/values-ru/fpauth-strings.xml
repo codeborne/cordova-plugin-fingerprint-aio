@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="cancel">Отмена</string>
-    <string name="use_backup">Альтернативный вариант</string>
+    <string name="fingerprint_cancel">Отмена</string>
+    <string name="fingerprint_use_backup">Альтернативный вариант</string>
     <string name="fingerprint_auth_dialog_title">Вход по отпечатку</string>
-    <string name="ok">Ок</string>
+    <string name="fingerprint_ok">Ок</string>
     <string name="fingerprint_description">Для продолжения приложите палец к сенсору</string>
     <string name="fingerprint_hint">Сенсор отпечатка пальца</string>
     <string name="fingerprint_not_recognized">Отпечаток не распознан. Повторите попытку.</string>
